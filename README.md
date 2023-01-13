@@ -11,7 +11,11 @@ These instructions will get you a copy of the project up and running on your loc
 ````
 pip install python-dotenv
 ````
-
+### Install token
+You need to generate your [Bitlink-token](https://app.bitly.com/settings/api/) and pass it in a file `.env ` in a root folder of your project folder:
+````
+BITLINK_ACCESS_TOKEN = [your token]
+````
 ### Demo
 
 Past your link in terminal window after starting script:
