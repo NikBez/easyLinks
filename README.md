@@ -16,6 +16,17 @@ You need to generate your [Bitlink-token](https://app.bitly.com/settings/api/) a
 ````
 BITLINK_ACCESS_TOKEN=[your token]
 ````
+
+### Run tool
+````
+% python3 main.py -l --link "[YOUR LINK]"
+````
+`-link` is not required, you can simple input link after command
+````
+% python3 main.py
+````
+
+
 ### Demo
 
 Past your link in terminal window after starting script:

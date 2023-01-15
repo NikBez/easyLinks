@@ -1,14 +1,21 @@
+import argparse
 import os, sys
 from urllib.parse import urlparse
-
 import requests
 from dotenv import load_dotenv
 
 
 def main():
     load_dotenv()
+
+    parser = argparse.ArgumentParser(
+    description="Скрипт создает короткие ссылки с помощью сервиса Bitly")
+    parser.add_argument('-l', '--link', default='', help="ваша ссылка")
+    args = parser.parse_args()
+
     token = os.environ['BITLINK_ACCESS_TOKEN']
-    user_link = input('Your link: ')
+
+    user_link = args.link if args.link else input('Your link: ')
 
     if is_bitlink(user_link, token):
         try:
@@ -21,11 +28,13 @@ def main():
     else:
         try:
             bitlink = shorten_link(user_link, token)
+            click_count = count_clicks(bitlink, token)
         except requests.exceptions.HTTPError:
             print("Link is invalid. ")
             sys.exit()
 
         print('Bitlink: ', bitlink)
+        print(f'This link has {click_count} clicks')
 
 
 def shorten_link(link, token):
